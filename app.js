@@ -1,3 +1,17 @@
+const allButtons = document.querySelectorAll('button');
+const displayElement = document.querySelector('.displayNumber');
+let displayValue = "";
+
+allButtons.forEach((button)=>{
+    button.addEventListener('click', displayValueToScreen);
+})
+
+function displayValueToScreen(event){
+    displayValue += event.currentTarget.textContent;
+    displayElement.textContent = displayValue;
+}
+
+
 function addNumbers(Num1, Num2) {
     let result = Num1 + Num2;
     return result;
@@ -48,6 +62,8 @@ function operate(operator, Num1, Num2) {
     }
 
 }
+
+
 
 
 // function operate(operator, Num1, Num2){
