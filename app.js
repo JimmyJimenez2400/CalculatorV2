@@ -33,6 +33,7 @@ function storingValueAndOperation(event) {
         displayValue = "";
     } else {
         secondOperand = displayValue;
+        operation = event.currentTarget.textContent;
         console.log(secondOperand);
     }    
 }
