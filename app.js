@@ -31,11 +31,15 @@ function storingValueAndOperation(event) {
         operation = event.currentTarget.textContent;
         firstOperand = displayValue;
         displayValue = "";
-    } else {
+        console.log(firstOperand);
+        console.log(operation);
+    }else{
         secondOperand = displayValue;
         operation = event.currentTarget.textContent;
         console.log(secondOperand);
-    }    
+        console.log(operation);
+        displayValue = operate(firstOperand, operation, secondOperand);
+    }
 }
 
 /*
@@ -72,19 +76,16 @@ Example:
 
 
 Pseudocode:
-1.Continuing
-2.
-3.
-4.
-5.
-6.
-7.
-8.
-9.
-
-
-
-
+1.else if
+    a.save secondOperand and Operation
+    b. If operation clicked on
+        a.Operate first and Second Operand Pair
+        b.save into result variable
+        b. display Result
+2. else
+    a. save operation when clicked on
+    b. save secondOperand
+    c.repeat else if
 
 */
 
