@@ -1,11 +1,13 @@
 const displayElement = document.querySelector('.displayNumber');
 const numberButtons = document.querySelectorAll('.numbers');
 const operatorButtons = document.querySelectorAll('.operator');
+const equalButton = document.querySelector('#equal');
 
 let displayValue = "";
 let firstOperand = "";
 let operation = "";
 let secondOperand = "";
+let result = 0;
 
 
 
@@ -18,29 +20,40 @@ numberButtons.forEach((button) => {
     button.addEventListener('click', displayValueToScreen);
 })
 
+// equalButton.addEventListener('click', EqualButtonClicked);
+
+function EqualButtonClicked(Num1, operator, Num2) {
+    let result = Num1 + operator + Num2;
+    return result;
+}
+
 function displayValueToScreen(event) {
     displayValue += event.currentTarget.textContent;
     displayElement.textContent = displayValue;
 }
 
 function storingValueAndOperation(event) {
-
     if (operation === "") {
         firstOperand = displayValue;
-
         operation = event.currentTarget.textContent;
         firstOperand = displayValue;
         displayValue = "";
         console.log(firstOperand);
         console.log(operation);
-    }else{
-        secondOperand = displayValue;
+    } else if (operation === "=") {
+        firstOperand = result;
         operation = event.currentTarget.textContent;
-        console.log(secondOperand);
-        console.log(operation);
-        displayValue = operate(firstOperand, operation, secondOperand);
+    } else{
+        secondOperand = displayValue;
+        result = operate(+firstOperand, operation, +secondOperand);
+        firstOperand = result;
+        displayElement.textContent = firstOperand;
+        operation = event.currentTarget.textContent;
+        displayValue = "";
     }
 }
+
+
 
 /*
 
@@ -76,16 +89,11 @@ Example:
 
 
 Pseudocode:
-1.else if
-    a.save secondOperand and Operation
-    b. If operation clicked on
-        a.Operate first and Second Operand Pair
-        b.save into result variable
-        b. display Result
-2. else
-    a. save operation when clicked on
-    b. save secondOperand
-    c.repeat else if
+if operation is clicked
+    operate first pair (1 + 2), save result into global variable result, then save it in firstOperand or displayValue
+    save new operation
+    save secondOperand
+    repeat
 
 */
 
@@ -117,23 +125,20 @@ function divideNumbers(Num1, Num2) {
     return result;
 }
 
-divideNumbers(10, 5);
-
 
 function operate(Num1, operator, Num2) {
-
     switch (operator) {
         case '+':
-            addNumbers(Num1, Num2);
+            return addNumbers(Num1, Num2);
             break;
         case '-':
-            subtractNumbers(Num1, Num2);
+            return subtractNumbers(Num1, Num2);
             break;
         case '*':
-            multiplyNumbers(Num1, Num2);
+            return multiplyNumbers(Num1, Num2);
             break;
         case '/':
-            divideNumbers(Num1, Num2);
+            return divideNumbers(Num1, Num2);
             break;
         default:
             alert("No Valid Input");
