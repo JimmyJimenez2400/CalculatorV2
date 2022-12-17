@@ -150,18 +150,19 @@ function storingValueAndOperation(event) {
         console.log('Calculate Now!');
         secondOperand = displayValue;
         result = operate(+firstOperand, storedOperation, +secondOperand);
-        displayElement.textContent = result;
+        displayElement.textContent = result.toFixed(2);
     }
     else if(currentOperation !="="){
         console.log("WE ARE HERE!");
         secondOperand = displayValue;
         result = operate(+firstOperand, storedOperation, +secondOperand);
-        firstOperand = result;
+        firstOperand = result.toFixed(2);
         displayElement.textContent = firstOperand;
         storedOperation = currentOperation;
         displayValue = "";
     }
 }
+
 
 function addNumbers(Num1, Num2) {
     let result = Num1 + Num2;
