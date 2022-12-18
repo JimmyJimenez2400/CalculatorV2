@@ -27,7 +27,7 @@ function displayValueToScreen(event) {
     displayElement.textContent = displayValue;
 }
 
-function clearAllContent(event){
+function clearAllContent(){
     console.log("You're pressing me!");
     displayValue = "";
     firstOperand = "";
@@ -80,8 +80,14 @@ function multiplyNumbers(Num1, Num2) {
 }
 
 function divideNumbers(Num1, Num2) {
-    let result = Num1 / Num2;
-    return result;
+    if(Num2 === 0 || isNaN(Num2)){
+        alert("You cannot divide by 0");
+        clearAllContent();
+    }else{
+        let result = Num1 / Num2;
+        return result;
+    }
+    
 }
 
 
