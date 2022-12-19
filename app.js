@@ -27,7 +27,7 @@ function displayValueToScreen(event) {
     displayElement.textContent = displayValue;
 }
 
-function clearAllContent(){
+function clearAllContent() {
     console.log("You're pressing me!");
     displayValue = "";
     firstOperand = "";
@@ -50,8 +50,14 @@ function storingValueAndOperation(event) {
     } else if (currentOperation === "=" && firstOperand != "" && storedOperation != "") {
         console.log('Calculate Now!');
         secondOperand = displayValue;
-        result = operate(+firstOperand, storedOperation, +secondOperand);
-        displayElement.textContent = result.toFixed(2);
+        if(secondOperand === "0" && storedOperation === "/"){
+            alert("You Cannot divide by 0");
+            clearAllContent();
+        }else{
+            result = operate(+firstOperand, storedOperation, +secondOperand);
+            displayElement.textContent = result.toFixed(2);
+        }
+        
     } else if (currentOperation != "=") {
         console.log("WE ARE HERE!");
         secondOperand = displayValue;
@@ -80,14 +86,9 @@ function multiplyNumbers(Num1, Num2) {
 }
 
 function divideNumbers(Num1, Num2) {
-    if(Num2 === 0 || isNaN(Num2)){
-        alert("You cannot divide by 0");
-        clearAllContent();
-    }else{
-        let result = Num1 / Num2;
-        return result;
-    }
-    
+
+    let result = Num1 / Num2;
+    return result;
 }
 
 
