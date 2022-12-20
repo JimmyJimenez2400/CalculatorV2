@@ -2,12 +2,15 @@ const displayElement = document.querySelector('.displayNumber');
 const numberButtons = document.querySelectorAll('.numbers');
 const operatorButtons = document.querySelectorAll('.operator');
 const clearButton = document.querySelector("#clear");
+const decimalButton = document.querySelector("#decimal");
 
 let displayValue = "";
 let firstOperand = "";
 let storedOperation = "";
 let secondOperand = "";
 let result = 0;
+
+decimalButton.addEventListener('click', addDecimal);
 
 
 clearButton.addEventListener('click', clearAllContent);
@@ -26,6 +29,24 @@ function displayValueToScreen(event) {
     displayValue += event.currentTarget.textContent;
     displayElement.textContent = displayValue;
 }
+
+function addDecimal(event) {
+    result = displayElement.textContent;
+    let decimal = event.currentTarget.textContent;
+
+    if(result.indexOf(decimal) === -1){
+        displayValueToScreen(event);
+        return;
+    }else{
+        return;
+    }
+
+}
+
+/*
+
+if "." is not in displayValue, then we can add it to displayValue and display it
+in displayElement if it is, disable button and return;*/
 
 function clearAllContent() {
     console.log("You're pressing me!");
@@ -50,19 +71,23 @@ function storingValueAndOperation(event) {
     } else if (currentOperation === "=" && firstOperand != "" && storedOperation != "") {
         console.log('Calculate Now!');
         secondOperand = displayValue;
-        if(secondOperand === "0" && storedOperation === "/"){
+        if (secondOperand === "0" && storedOperation === "/") {
             alert("You Cannot divide by 0");
             clearAllContent();
-        }else{
-            result = operate(+firstOperand, storedOperation, +secondOperand);
-            displayElement.textContent = result.toFixed(2);
+            return;
         }
-        
+        result = parseFloat(operate(+firstOperand, storedOperation, +secondOperand).toFixed(2));
+        displayValue = result;
+        displayElement.textContent = displayValue;
+        firstOperand = "";
+        secondOperand = "";
+        storedOperation = "";
+
     } else if (currentOperation != "=") {
         console.log("WE ARE HERE!");
         secondOperand = displayValue;
-        result = operate(+firstOperand, storedOperation, +secondOperand);
-        firstOperand = result.toFixed(2);
+        result = parseFloat(operate(+firstOperand, storedOperation, +secondOperand).toFixed(2));
+        firstOperand = result;
         displayElement.textContent = firstOperand;
         storedOperation = currentOperation;
         displayValue = "";

@@ -26,7 +26,8 @@ button{
 /* Container */
 
 #container{
-    background-color: grey;
+    background-color: #abd1c6;
+    border: 2px solid #fffffe;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -56,6 +57,7 @@ button{
     flex: 1;
     border-radius: 2rem;
     background-color: white;
+    border: 2px solid #001e1d;
 }
 
 /* Display END */
@@ -68,6 +70,7 @@ button{
     flex-wrap: wrap;
     flex-grow: 2;
     gap: 50px;
+    
 }
 
 /* Number Buttons */
@@ -81,7 +84,14 @@ button{
     justify-content: space-evenly;
 }
 
+
+.numberButtons button{
+    background-color: #f9bc60;
+    border: 1px solid #001e1d;
+}
+
 .row{
+    
     width: 100%;
     display: flex;
     justify-content: space-around;
@@ -100,6 +110,10 @@ button{
     flex: 1;
     justify-content: space-evenly;
     align-items: center;
+}
+
+.operators button{
+    background-color: #e16162;
 }
 
 .row .equals, .clear{
