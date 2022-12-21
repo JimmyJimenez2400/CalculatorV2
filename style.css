@@ -9,12 +9,13 @@ body{
    width: 100%;
    background-color: bisque;
    height: 100vh;
+   width: 100vw;
    display: flex;
    justify-content: center;
    align-items: center;
 }
 button{
-    height: 100px;
+    flex: 0 0 auto;
     padding-left: 50px;
     font-size: 3rem;
     padding-right: 50px;
@@ -32,7 +33,7 @@ button{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 90%;
+    height: 90vh;
     flex-wrap: wrap;
     border-radius: 2rem;
     padding: 2em;
@@ -58,6 +59,7 @@ button{
     border-radius: 2rem;
     background-color: white;
     border: 2px solid #001e1d;
+    padding: 1em;
 }
 
 /* Display END */
@@ -116,7 +118,7 @@ button{
     background-color: #e16162;
 }
 
-.row .equals, .clear{
+.row .equals, .clear, .operator{
     flex: 1;   
 }
 
