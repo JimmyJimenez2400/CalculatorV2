@@ -3,12 +3,15 @@ const numberButtons = document.querySelectorAll('.numbers');
 const operatorButtons = document.querySelectorAll('.operator');
 const clearButton = document.querySelector("#clear");
 const decimalButton = document.querySelector("#decimal");
+const backSpaceButton = document.querySelector("#backspace");
 
 let displayValue = "";
 let firstOperand = "";
 let storedOperation = "";
 let secondOperand = "";
 let result = 0;
+
+backSpaceButton.addEventListener('click', deleteOneCharacter);
 
 decimalButton.addEventListener('click', addDecimal);
 
@@ -43,10 +46,29 @@ function addDecimal(event) {
 
 }
 
-/*
+function deleteOneCharacter(event){
+    result = displayElement.textContent;
+    console.log(typeof result);
+    let deleteOneCharacter = event.currentTarget;
+    console.log(typeof displayElement.textContent);
 
-if "." is not in displayValue, then we can add it to displayValue and display it
-in displayElement if it is, disable button and return;*/
+    if(deleteOneCharacter){
+        console.log("YOU PRESSED ME!");
+        result = result.slice(0, result.length -1);
+        displayElement.textContent = result;
+        displayValue = result;
+
+    }else{
+        return;
+    }
+}
+
+/* 
+
+When user clicks upon backspace, it should delete one character from string, if we're
+targeting the displayELement.textContent
+
+*/
 
 function clearAllContent() {
     console.log("You're pressing me!");
