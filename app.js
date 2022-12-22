@@ -5,6 +5,8 @@ const clearButton = document.querySelector("#clear");
 const decimalButton = document.querySelector("#decimal");
 const backSpaceButton = document.querySelector("#backspace");
 
+
+
 let displayValue = "";
 let firstOperand = "";
 let storedOperation = "";
@@ -28,37 +30,67 @@ numberButtons.forEach((button) => {
 
 // equalButton.addEventListener('click', EqualButtonClicked);
 
-function displayValueToScreen(event) {
-    displayValue += event.currentTarget.textContent;
-    displayElement.textContent = displayValue;
+document.addEventListener('keydown', function (e) {
+
+    if (e.key === '1' || e.key === '2' || e.key === '3' || e.key === '4' || e.key === '5' || e.key === '6' || e.key === '7' || e.key === '8' || e.key === '9' || e.key === '0') {
+        displayValueToScreen(e)
+    }else if(e.key === '*' || e.key === '-' || e.key === '/' || e.key === "+" || e.key === "="){
+        storingValueAndOperation(e);
+    }else if(e.key === 'Backspace'){
+        deleteOneCharacter(e);
+    }else if(e.key === "c"){
+        clearAllContent(e);
+    }else if(e.key === '.'){
+        addDecimal(e);
+        return;
+    }
+})
+
+// function displayValueToScreen(event) {
+//     displayValue += event.key;
+//     displayElement.textContent = displayValue;
+// }
+
+function displayValueToScreen(event){
+    let number;
+    if(event.key){
+        number = event.key;
+        displayValue += number;
+        displayElement.textContent = displayValue;
+        
+    }else if(event.currentTarget){
+        number = event.currentTarget.textContent;
+        displayValue += number;
+        displayElement.textContent = displayValue;
+    }
 }
 
 function addDecimal(event) {
     result = displayElement.textContent;
     let decimal = event.currentTarget.textContent;
 
-    if(result.indexOf(decimal) === -1){
+    if (result.indexOf(decimal) === -1) {
         displayValueToScreen(event);
         return;
-    }else{
+    } else {
         return;
     }
 
 }
 
-function deleteOneCharacter(event){
+function deleteOneCharacter(event) {
     result = displayElement.textContent;
     console.log(typeof result);
     let deleteOneCharacter = event.currentTarget;
     console.log(typeof displayElement.textContent);
 
-    if(deleteOneCharacter){
+    if (deleteOneCharacter) {
         console.log("YOU PRESSED ME!");
-        result = result.slice(0, result.length -1);
+        result = result.slice(0, result.length - 1);
         displayElement.textContent = result;
         displayValue = result;
 
-    }else{
+    } else {
         return;
     }
 }
@@ -82,8 +114,8 @@ function clearAllContent() {
 }
 
 function storingValueAndOperation(event) {
-    const currentOperation = event.currentTarget.textContent;
-    if (storedOperation === "" && currentOperation != "=") {
+    const currentOperation = event.key || event.currentTarget.textContent;
+    if(storedOperation === "" && currentOperation != "=") {
         firstOperand = displayValue;
         storedOperation = currentOperation;
         firstOperand = displayValue;
