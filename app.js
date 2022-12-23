@@ -42,14 +42,15 @@ document.addEventListener('keydown', function (e) {
         clearAllContent(e);
     }else if(e.key === '.'){
         addDecimal(e);
-        return;
     }
 })
 
 // function displayValueToScreen(event) {
 //     displayValue += event.key;
 //     displayElement.textContent = displayValue;
-// }
+// 
+
+
 
 function displayValueToScreen(event){
     let number;
@@ -67,15 +68,25 @@ function displayValueToScreen(event){
 
 function addDecimal(event) {
     result = displayElement.textContent;
-    let decimal = event.currentTarget.textContent;
-
-    if (result.indexOf(decimal) === -1) {
-        displayValueToScreen(event);
-        return;
-    } else {
-        return;
+    let decimal;
+    if(event.key){
+        decimal = event.key;
+        if (result.indexOf(decimal) === -1) {
+            displayValueToScreen(event);
+            return;
+        } else {
+            return;
+        }
     }
-
+    else if(event.currentTarget.textContent){
+        decimal = event.currentTarget.textContent;
+        if (result.indexOf(decimal) === -1) {
+            displayValueToScreen(event);
+            return;
+        } else {
+            return;
+        }
+    }
 }
 
 function deleteOneCharacter(event) {

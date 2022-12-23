@@ -15,11 +15,11 @@ body{
    align-items: center;
 }
 button{
+    cursor: pointer;
     flex: 0 0 auto;
     padding-left: 50px;
     font-size: 3rem;
     padding-right: 50px;
-    cursor: pointer;
     border-radius: 2rem;
     
 }
@@ -89,7 +89,12 @@ button{
 
 .numberButtons button{
     background-color: #f9bc60;
+    transition: background-color 2s;
     border: 1px solid #001e1d;
+}
+
+.numberButtons button:hover{
+    background-color: #f9bc6086;
 }
 
 .row{
@@ -116,6 +121,13 @@ button{
 
 .operators button{
     background-color: #e16162;
+    border: 1px solid black;
+    transition: background-color 2s;
+}
+
+.operators button:hover{
+    background-color: #eea2a2;
+
 }
 
 .row .equals, .clear, .operator{
