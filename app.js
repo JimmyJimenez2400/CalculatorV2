@@ -13,19 +13,19 @@ let storedOperation = "";
 let secondOperand = "";
 let result = 0;
 
-backSpaceButton.addEventListener('click', deleteOneCharacter);
+backSpaceButton.addEventListener('pointerdown', deleteOneCharacter);
 
-decimalButton.addEventListener('click', addDecimal);
+decimalButton.addEventListener('pointerdown', addDecimal);
 
 
-clearButton.addEventListener('click', clearAllContent);
+clearButton.addEventListener('pointerdown', clearAllContent);
 
 operatorButtons.forEach((operator) => {
-    operator.addEventListener('click', storingValueAndOperation);
+    operator.addEventListener('pointerdown', storingValueAndOperation);
 })
 
 numberButtons.forEach((button) => {
-    button.addEventListener('click', displayValueToScreen);
+    button.addEventListener('pointerdown', displayValueToScreen);
 })
 
 // equalButton.addEventListener('click', EqualButtonClicked);
@@ -64,6 +64,7 @@ function displayValueToScreen(event){
         displayValue += number;
         displayElement.textContent = displayValue;
     }
+    
 }
 
 function addDecimal(event) {
@@ -131,10 +132,7 @@ function storingValueAndOperation(event) {
         storedOperation = currentOperation;
         firstOperand = displayValue;
         displayValue = "";
-        console.log(firstOperand);
-        console.log(storedOperation);
     } else if (currentOperation === "=" && firstOperand != "" && storedOperation != "") {
-        console.log('Calculate Now!');
         secondOperand = displayValue;
         if (secondOperand === "0" && storedOperation === "/") {
             alert("You Cannot divide by 0");
@@ -144,12 +142,12 @@ function storingValueAndOperation(event) {
         result = parseFloat(operate(+firstOperand, storedOperation, +secondOperand).toFixed(2));
         displayValue = result;
         displayElement.textContent = displayValue;
-        firstOperand = "";
+        firstOperand = displayValue;
         secondOperand = "";
         storedOperation = "";
+        
 
     } else if (currentOperation != "=") {
-        console.log("WE ARE HERE!");
         secondOperand = displayValue;
         result = parseFloat(operate(+firstOperand, storedOperation, +secondOperand).toFixed(2));
         firstOperand = result;
